@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="movieItem"
+            type="com.example.mymovieapp.placeholder.PlaceholderContent.PlaceholderItem" />
+    </data>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_margin="20dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient_card">
+
+            <TextView
+                android:id="@+id/item_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:layout_marginStart="184dp"
+                android:text="@string/django_title"
+                android:textAlignment="center"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/carouselItemImage"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/text_margin"
+                android:paddingTop="15dp"
+                android:text="@string/django_short_desc"
+                android:textAlignment="center"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textColor="#CDCDCD"
+                android:textSize="13sp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toTopOf="@+id/share_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/carouselItemImage"
+                app:layout_constraintTop_toBottomOf="@+id/item_number"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <ImageView
+                android:id="@+id/carouselItemImage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="200dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/django_thumb" />
+
+            <Button
+                android:id="@+id/share_btn"
+                android:layout_width="77dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="4dp"
+                android:background="@android:color/transparent"
+                android:padding="0dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
+                android:text="@string/share_title"
+                android:textAlignment="textStart"
+                android:textColor="#00E1FF"
+                android:textSize="11sp"
+                app:icon="@drawable/share_icon"
+                app:iconPadding="5dp"
+                app:iconTint="#00E1FF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/content" />
+
+            <Button
+                android:id="@+id/details_btn"
+                android:layout_width="74dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="4dp"
+                android:background="@android:color/transparent"
+                android:elegantTextHeight="false"
+                android:padding="0dp"
+                android:text="@string/details_title"
+                android:textAlignment="textStart"
+                android:textColor="#FFCB00"
+                android:textIsSelectable="false"
+                android:textSize="11sp"
+                app:icon="@drawable/details_icon"
+                app:iconPadding="5dp"
+                app:iconTint="#FFCB00"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/content" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>
+</layout>

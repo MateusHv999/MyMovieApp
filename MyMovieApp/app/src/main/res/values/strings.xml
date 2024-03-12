@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MyMovieApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="share_title">SHARE</string>
+    <string name="details_title">DETAILS</string>
+    <string name="sinopse_title">SINOPSE:</string>
+    <string name="django_title">DJANGO LIVRE</string>
+    <string name="django_short_desc">Com a ajuda de um caçador de recompensas alemão, um escravo libertado sai para resgatar sua esposa de um brutal dono de uma plantação no Mississipi.</string>
+    <string name="django_full_desc">"Django Unchained" é um filme dirigido por Quentin Tarantino que se passa nos Estados Unidos pré-Guerra Civil e segue a história de Django (Jamie Foxx), um escravo liberto com um passado brutal. Django se une ao caçador de recompensas alemão Dr. King Schultz (Christoph Waltz) para encontrar os irmãos Brittle, assassinos procurados. Schultz promete libertar Django quando os irmãos forem capturados.
+
+Depois de cumprir sua parte do acordo, Schultz e Django continuam juntos, caçando criminosos perigosos.Django busca principalmente sua esposa Broomhilda (Kerry Washington), que foi separada dele há anos. A busca leva-os a Calvin Candie (Leonardo DiCaprio), dono de uma plantação chamada "Candyland", conhecida pela brutalidade. Eles chamam a atenção de Stephen (Samuel L. Jackson), o escravo de confiança de Candie, e enfrentam perigosas consequências. Django e Schultz enfrentam escolhas difíceis entre independência e solidariedade, sacrifício e sobrevivência enquanto tentam resgatar Broomhilda. O filme é uma história de vingança, liberdade e luta contra a opressão em um contexto histórico tenso.</string>
+</resources>
