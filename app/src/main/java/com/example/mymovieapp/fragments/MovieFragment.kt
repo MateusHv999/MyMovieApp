@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -15,7 +16,6 @@ import androidx.navigation.navGraphViewModels
 import com.example.mymovieapp.MovieViewModel
 import com.example.mymovieapp.R
 import com.example.mymovieapp.databinding.FragmentMovieListBinding
-import com.example.mymovieapp.placeholder.PlaceholderContent
 
 class MovieFragment : Fragment(), MovieItemListener {
 
@@ -26,8 +26,12 @@ class MovieFragment : Fragment(), MovieItemListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentMovieListBinding.inflate(inflater, container, false)
+        val binding = FragmentMovieListBinding.inflate(inflater)
+        val view = binding.root
         val recyclerView = binding.list
+
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
 
         adapter = MyItemRecyclerViewAdapter(this)
 
@@ -38,7 +42,7 @@ class MovieFragment : Fragment(), MovieItemListener {
 
         initObservers()
 
-        return binding.root
+        return view
     }
     override fun onItemSelected(position: Int) {
         viewModel.onMovieSelected(position)

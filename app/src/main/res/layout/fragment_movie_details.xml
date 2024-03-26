@@ -5,6 +5,9 @@
 
     <data>
         <variable
+            name="movieItem"
+            type="com.example.mymovieapp.responses.Movie"/>
+        <variable
             name="viewModel"
             type="com.example.mymovieapp.MovieViewModel" />
     </data>
@@ -12,7 +15,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_bg"
+    android:background="@drawable/bg_2"
     tools:context=".fragments.MovieDetailsFragment" >
 
 
@@ -20,7 +23,8 @@
         android:id="@+id/mvTitle_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="title"
+        android:layout_marginTop="16dp"
+        android:text="@{viewModel.movieDetailsLiveData.movieTitle}"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -30,64 +34,38 @@
 
     <ImageView
         android:id="@+id/mvBanner_details"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/rate_details"
+        app:layout_constraintBottom_toTopOf="@+id/fullDesc_details"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mvTitle_details"
+        app:srcUrl="@{viewModel.movieDetailsLiveData.imageDetails}"
         tools:src="@drawable/django_thumb" />
-
-    <TextView
-        android:id="@+id/rate_details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="9.5/10"
-
-        android:textColor="#FF9B00"
-        app:drawableStartCompat="@drawable/rate_icon"
-        app:layout_constraintBottom_toTopOf="@+id/sinopse_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/sinopse_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sinopse_title"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/fullDesc_details"
-        app:layout_constraintEnd_toEndOf="@+id/rate_details"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/rate_details"
-        app:layout_marginBaseline="30dp" />
 
     <TextView
         android:id="@+id/fullDesc_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
-        android:text="lorem"
+        android:text="@{viewModel.movieDetailsLiveData.contentDetails}"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="12sp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <view
         android:id="@+id/view"
         class="org.imaginativeworld.whynotimagecarousel.ImageCarousel"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        app:carouselUrl="@{viewModel.imageLiveData.carouselImages}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fullDesc_details" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
