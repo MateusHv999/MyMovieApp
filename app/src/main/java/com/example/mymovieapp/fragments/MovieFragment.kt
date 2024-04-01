@@ -55,8 +55,10 @@ class MovieFragment : Fragment(), MovieItemListener {
             }
         })
         viewModel.navigationToDetailLiveData.observe(viewLifecycleOwner, Observer {
-            val action = MovieFragmentDirections.actionMovieFragmentToMovieDetailsFragment()
-            findNavController().navigate(action)
+            it.getContentNotHandled()?.let {
+                val action = MovieFragmentDirections.actionMovieFragmentToMovieDetailsFragment()
+                findNavController().navigate(action)
+            }
         })
     }
 }

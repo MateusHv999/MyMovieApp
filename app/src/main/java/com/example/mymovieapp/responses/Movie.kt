@@ -27,5 +27,5 @@
                 else -> "titulo nao disponivel"
             }
         }
-        fun getImage() = Credentials.imgUrl + poster_path
+        fun getImage() : String? = Credentials.imgUrl + poster_path
     }
