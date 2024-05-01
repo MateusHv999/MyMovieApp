@@ -1,4 +1,4 @@
-package com.example.mymovieapp
+package com.example.mymovieapp.api
 
 class Credentials {
     companion object {

@@ -1,9 +1,8 @@
-package com.example.mymovieapp
+package com.example.mymovieapp.api
 
-import com.example.mymovieapp.responses.DetailsResponse
-import com.example.mymovieapp.responses.ImageResponse
-import com.example.mymovieapp.responses.MovieResponse
-import retrofit2.Call
+import com.example.mymovieapp.data.Details
+import com.example.mymovieapp.data.ImageResponse
+import com.example.mymovieapp.data.MovieResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -25,5 +24,5 @@ interface MovieService {
     suspend fun getDetails(
         @Path("movie_id") id: Int?,
         @Query("api_key") apiKey: String
-    ) : Response<DetailsResponse>
+    ) : Response<Details>
 }

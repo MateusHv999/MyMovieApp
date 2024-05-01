@@ -1,10 +1,10 @@
-package com.example.mymovieapp.fragments
+package com.example.mymovieapp.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mymovieapp.databinding.FragmentMovieBinding
-import com.example.mymovieapp.responses.Movie
+import com.example.mymovieapp.data.Movie
 
 interface MovieItemListener {
     fun onItemSelected(position: Int)

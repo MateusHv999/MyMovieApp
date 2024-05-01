@@ -1,27 +1,27 @@
-    package com.example.mymovieapp.responses
+    package com.example.mymovieapp.data
 
-    import android.provider.ContactsContract.CommonDataKinds.Im
-    import com.example.mymovieapp.Credentials
+    import androidx.room.Entity
+    import androidx.room.PrimaryKey
+    import com.example.mymovieapp.api.Credentials
     import com.squareup.moshi.JsonClass
-    import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
 
+    @Entity
     @JsonClass(generateAdapter = true)
-    data class Movie (
-        val id: Int?,
-        val overview: String?,
-        val title: String?,
-        val poster_path: String?,
-        val backdrops: String?,
-        val thumbnail: Image?,
-        val images: List<Image>?,
-    ) {
+    class Movie () {
+        @PrimaryKey
+        var id: Int? = null
+        var overview: String? = null
+        var title: String? = null
+        var poster_path: String? = null
         fun getContent(): String {
+            val overview = overview
             return when {
                 overview?.isNotEmpty() == true -> overview
                 else -> "Conteudo nao disponivel"
             }
         }
         fun getMovieTitle(): String {
+            val title = title
             return when {
                 title?.isNotEmpty() == true -> title
                 else -> "titulo nao disponivel"

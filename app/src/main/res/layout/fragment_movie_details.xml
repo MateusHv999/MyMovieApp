@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="movieItem"
-            type="com.example.mymovieapp.responses.Movie"/>
+            type="com.example.mymovieapp.data.Movie"/>
         <variable
             name="viewModel"
             type="com.example.mymovieapp.MovieViewModel" />
@@ -17,7 +17,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_2"
-    tools:context=".fragments.MovieDetailsFragment" >
+    tools:context=".details.MovieDetailsFragment" >
 
 
     <TextView

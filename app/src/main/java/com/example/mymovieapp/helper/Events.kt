@@ -1,4 +1,4 @@
-package com.example.mymovieapp.fragments
+package com.example.mymovieapp.helper
 
 class Events<out T> (private val content: T) {
     var Handled = false
