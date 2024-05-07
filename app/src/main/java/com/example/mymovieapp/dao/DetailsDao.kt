@@ -19,4 +19,7 @@
         open suspend fun insertDetails(details: Details){
             insert(details)
         }
+        @Transaction
+        @Query("DELETE from details")
+        abstract suspend fun clearDetailsData()
     }
