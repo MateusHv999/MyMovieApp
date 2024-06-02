@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
@@ -16,7 +17,7 @@ import com.example.mymovieapp.databinding.FragmentMovieListBinding
 class MovieFragment : Fragment(), MovieItemListener {
 
     private lateinit var adapter: MyItemRecyclerViewAdapter
-    private val viewModel by navGraphViewModels<MovieViewModel>(R.id.movie_nav){defaultViewModelProviderFactory}
+    private val viewModel by hiltNavGraphViewModels<MovieViewModel>(R.id.movie_nav)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

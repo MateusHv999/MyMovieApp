@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mymovieapp.data.Details
 import com.example.mymovieapp.data.ImageResponse
@@ -11,15 +12,20 @@ import com.example.mymovieapp.data.Movie
 import com.example.mymovieapp.helper.Events
 import com.example.mymovieapp.helper.States
 import com.example.mymovieapp.repository.MovieRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import org.jetbrains.annotations.VisibleForTesting
+import javax.inject.Inject
 
-class MovieViewModel(application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+class MovieViewModel @Inject constructor(
+    val movieRepository : MovieRepository
+): ViewModel(){
     private val _movieDetailsLivedata = MutableLiveData<Details?>()
     private val _movieListLivedata = MutableLiveData<List<Movie>?>()
     private val _imageLiveData = MutableLiveData<ImageResponse?>()
     private val _navigationToDetailLiveData = MutableLiveData<Events<Unit>>()
     private val _appState = MutableLiveData<States>()
-    private val MovieRepository = MovieRepository(application)
     val movieDetailsLiveData: LiveData<Details?>
         get() = _movieDetailsLivedata
 
@@ -49,10 +55,11 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
         getMovie()
     }
     // Resultados do repositorio
+    @VisibleForTesting
     fun getMovie() {
         _appState.postValue(States.LOADING)
         viewModelScope.launch {
-            val movieListResult = MovieRepository.getMovieData()
+            val movieListResult = movieRepository.getMovieData()
             movieListResult.fold(
                 onSuccess = {
                     _movieListLivedata.value = it
@@ -62,11 +69,11 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
             )
         }
     }
-
+    @VisibleForTesting
     fun getDetails(id: Int) {
         _appState.postValue(States.LOADING)
         viewModelScope.launch {
-            val detailListResult = MovieRepository.getDetailsData(id)
+            val detailListResult = movieRepository.getDetailsData(id)
             detailListResult.fold(
                 onSuccess = {
                     _movieDetailsLivedata.value = it
@@ -76,11 +83,11 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
             )
         }
     }
-
+    @VisibleForTesting
     fun getImage(id: Int) {
         _appState.postValue(States.LOADING)
         viewModelScope.launch {
-            val imageListResult = MovieRepository.getImageData(id)
+            val imageListResult = movieRepository.getImageData(id)
             imageListResult.fold(
                 onSuccess = {
                     _imageLiveData.value = it

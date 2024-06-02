@@ -22,23 +22,4 @@ abstract class MovieDataBase: RoomDatabase() {
     abstract fun imageListDao(movieDataBase: MovieDataBase): ImageListDao
     abstract fun movieDao(movieDataBase: MovieDataBase): MovieDao
     abstract fun imagesDao(): ImagesDao
-
-    companion object{
-        @Volatile
-        private var instance: MovieDataBase? = null
-
-        fun getDataBase(context: Context): MovieDataBase{
-            return instance ?: synchronized(this){
-                val dataBase = Room.databaseBuilder(
-                    context.applicationContext,
-                    MovieDataBase::class.java,
-                    "movie_data_base"
-                )   .fallbackToDestructiveMigration()
-                    .build()
-
-                this.instance = dataBase
-                return dataBase
-            }
-        }
-    }
 }

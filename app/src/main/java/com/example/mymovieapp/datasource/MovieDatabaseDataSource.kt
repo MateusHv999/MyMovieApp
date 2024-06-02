@@ -1,6 +1,9 @@
 package com.example.mymovieapp.datasource
 
 import android.content.Context
+import com.example.mymovieapp.dao.DetailsDao
+import com.example.mymovieapp.dao.ImageListDao
+import com.example.mymovieapp.dao.MovieDao
 import com.example.mymovieapp.data.Details
 import com.example.mymovieapp.data.ImageResponse
 import com.example.mymovieapp.data.ImagesWithAllProperties
@@ -8,12 +11,13 @@ import com.example.mymovieapp.data.Movie
 import com.example.mymovieapp.database.MovieDataBase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class MovieDatabaseDataSource(context: Context) : MovieDataSource {
-    private val movieDB = MovieDataBase.getDataBase(context)
-    private val movieDao = movieDB.movieDao(movieDB)
-    private val imageListDao = movieDB.imageListDao(movieDB)
-    private val detailsDao = movieDB.detailsDao(movieDB)
+class MovieDatabaseDataSource @Inject constructor(
+    private var movieDao : MovieDao,
+    private var detailsDao : DetailsDao,
+    private var imageListDao : ImageListDao
+) : MovieDataSource {
 
     override suspend fun getMovieData(): Result<List<Movie>?> =
         withContext(Dispatchers.IO) {

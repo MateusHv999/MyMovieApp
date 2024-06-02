@@ -7,7 +7,7 @@ import com.example.mymovieapp.database.MovieDataBase
 import com.example.mymovieapp.data.Movie
 
 @Dao
-abstract class MovieDao(movieDatabase: MovieDataBase): BaseDao<Movie> {
+abstract class MovieDao: BaseDao<Movie> {
     @Transaction
     @Query("SELECT * FROM movie")
     abstract suspend fun getAllMovies(): List<Movie>?

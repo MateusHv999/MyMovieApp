@@ -1,6 +1,7 @@
 package com.example.mymovieapp.datasource
 
 import com.example.mymovieapp.api.Credentials
+import com.example.mymovieapp.api.MovieService
 import com.example.mymovieapp.data.Details
 import com.example.mymovieapp.data.ImageResponse
 import com.example.mymovieapp.data.Movie
@@ -8,16 +9,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import javax.inject.Inject
 
-class MovieApiClientDataSource : MovieDataSource {
+class MovieApiClientDataSource @Inject constructor(
+    private var MovieService: MovieService
+) : MovieDataSource {
 
-    val retrofit =
-        Retrofit.Builder()
-            .baseUrl(Credentials.baseurl)
-            .addConverterFactory(MoshiConverterFactory.create())
-            .build()
-
-    private val MovieService = retrofit.create(com.example.mymovieapp.api.MovieService::class.java)
 
     // API Responses
     override suspend fun getMovieData(): Result<List<Movie>?> =

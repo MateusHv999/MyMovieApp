@@ -6,10 +6,12 @@ import com.example.mymovieapp.data.ImageResponse
 import com.example.mymovieapp.data.Movie
 import com.example.mymovieapp.datasource.MovieApiClientDataSource
 import com.example.mymovieapp.datasource.MovieDatabaseDataSource
+import javax.inject.Inject
 
-class MovieRepository(context: Context) {
-    private val MovieApiClientDataSource = MovieApiClientDataSource()
-    private val MovieDatabaseDataSource = MovieDatabaseDataSource(context)
+class MovieRepository @Inject constructor(
+    private var MovieApiClientDataSource : MovieApiClientDataSource,
+    private var MovieDatabaseDataSource : MovieDatabaseDataSource
+) {
 
     // Save Data & Handlers
     suspend fun getMovieData(): Result<List<Movie>?> {
@@ -31,8 +33,10 @@ class MovieRepository(context: Context) {
             val result = MovieApiClientDataSource.getMovieDetails(movieId)
             if (result.isSuccess) {
                 result.getOrNull()?.let { persistDetailsData(it, movieId) }
+                result
+            } else {
+                getLocalDetailsData(movieId)
             }
-            result
         } catch (e: Exception) {
             getLocalDetailsData(movieId)
         }
@@ -43,8 +47,10 @@ class MovieRepository(context: Context) {
             val result = MovieApiClientDataSource.getMovieImage(movieId)
             if (result.isSuccess) {
                 result.getOrNull()?.let { persistImageData(it, movieId) }
+                result
+            } else {
+                getLocalImageData(movieId)
             }
-            result
         } catch (e: Exception) {
             getLocalImageData(movieId)
         }
@@ -57,6 +63,7 @@ class MovieRepository(context: Context) {
     }
 
     private suspend fun persistDetailsData(details: Details, movieId: Int) {
+        MovieDatabaseDataSource.clearDetailsData()
         val detailsData = Details()
         detailsData.title = details.title
         detailsData.overview = details.overview

@@ -6,11 +6,12 @@ import androidx.room.Transaction
 import com.example.mymovieapp.database.MovieDataBase
 import com.example.mymovieapp.data.ImageResponse
 import com.example.mymovieapp.data.ImagesWithAllProperties
+import javax.inject.Inject
 
 @Dao
-abstract class ImageListDao(movieDatabase: MovieDataBase): BaseDao<ImageResponse> {
-
-    private val backdropDao = movieDatabase.imagesDao()
+abstract class ImageListDao(): BaseDao<ImageResponse> {
+    @Inject
+    lateinit var backdropDao : ImagesDao
     @Transaction
     @Query("SELECT * FROM movieImages")
     abstract suspend fun getAllImages() : List<ImagesWithAllProperties>?
